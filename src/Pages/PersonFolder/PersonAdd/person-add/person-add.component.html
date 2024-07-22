@@ -1,0 +1,31 @@
+<a class="btn btn-primary m-auto ml-48 mt-8 mb-8 w-22" routerLink="/people">Retour a la liste</a>
+<div>
+    <div class="card bg-white/[.4] shadow w-2/3 m-auto mt-16 mb-8 grid grid-cols-2 gap-4 card">
+
+        <div class="text-center card shadow p-2 bg-white/[.2] m-auto w-2/3 h-auto p-8 text-white text-l">
+                
+            <div>
+                <div>
+                    <label for="lastname">Lastname</label>
+                    <input type="text" [(ngModel)]="model.lastname">
+                </div>
+                
+                <div>
+                    <label for="firstname">Firstname</label>
+                    <input type="text" [(ngModel)]="model.firstname">
+                </div>
+                
+                <div>
+                    <label for="pictureURL">Picture</label>
+                    <input type="text" id="pictureURL" [(ngModel)]="model.pictureURL">
+                </div>
+            </div>
+                  
+            <div>
+
+                <img [src]="model.pictureURL" width="300" class="m-auto mt-8 mb-8 border border-white" alt="Picture">
+
+                <button class="btn btn-primary" (click)="Add()">Add</button>
+            </div>
+
+        </div>

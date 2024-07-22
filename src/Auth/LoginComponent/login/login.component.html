@@ -1,0 +1,22 @@
+<section>
+    <form class="p-3 text-center" (submit)="onSubmit($event)" [formGroup]="group">
+        <label class="m-3" for="username">Username</label>
+        <input class="m-3" type="text" formControlName="username">
+        @if (!group.get('username')?.valid && !group.get('username')?.untouched) {
+            <p>Username is required</p>
+        }
+
+        <label class="m-3" for="password">Password</label>
+        <input class="m-3" type="password" formControlName="password">
+        @if (!group.get('password')?.valid && !group.get('password')?.untouched) {
+            @if (!group.get('password')?.errors?.['minlength']) {
+                <p>Password is required</p>
+            }
+        }
+
+        @if (group.valid) {
+            <button class="btn btn-primary" type="submit">Login</button>
+        }
+
+    </form>
+</section>

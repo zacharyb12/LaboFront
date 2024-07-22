@@ -1,0 +1,7 @@
+.reduce{
+    transform: scale(0.6);
+    border: 2px solid white;
+    border-radius: 12%;
+    box-shadow: 10 10 20 20;
+    padding: 4rem;
+}

@@ -1,0 +1,30 @@
+<a class="btn btn-primary m-auto ml-48 mt-8 mb-8 w-22" routerLink="/people">Retour a la liste</a>
+<div>
+    <div class="card bg-white/[.4] shadow w-2/3 m-auto mt-16 mb-16 grid grid-cols-2 gap-10 card">
+
+        <div class="text-center card shadow p-8 bg-white/[.2] m-auto w-2/3 h-2/3 text-white text-xl">
+                
+                <div>
+                    <h1>{{person?.id}}</h1>
+                </div>
+
+                <div>
+                    <p>{{person?.firstname}}</p>
+                </div>
+                
+                <div>
+                    <p>{{person?.lastname}}</p>
+                </div>
+                
+                <div>
+                    <p>{{person?.role}}</p>
+                </div>
+                
+            </div>
+            
+
+            <div>
+                <img src="{{person?.pictureURL}}" width="300" class="m-auto mt-8 mb-8 border border-white" alt="">
+            </div>
+
+        </div>

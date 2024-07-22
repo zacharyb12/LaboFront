@@ -1,0 +1,35 @@
+<a class="btn btn-primary" routerLink="/">Retour</a>
+
+<div class="m-auto w-2/3 grid grid-cols-2">
+
+    <div class="card bg-dark m-auto shadow text-center text-white">
+
+        <div class="text-xl ">
+            <h1>{{movie?.title}}</h1>
+        </div>
+
+        <div class="card shadow bg-black/[.4] m-8 p-8">
+            <p>{{movie?.description}}</p>
+            <p>{{movie?.realisatorId}}</p>
+        </div>
+        <div *ngFor="let person of movie?.casting" class="card shadow bg-white/[.6] m-5 w-48 grid grid-cols-2">
+           <div>
+            <h3> {{person.firstname}}</h3>
+            <h3> {{person.lastname}}</h3>
+            <h3> {{person.role}}</h3>
+           </div>
+
+           <div>
+               <img src="{{person.pictureURL}}" width="100" alt="">
+           </div>
+
+            
+        </div>
+
+        <div>
+            <a class="btn btn-primary" routerLink="/movieUpdate/{{movie?.id}}">Update</a>
+            <button class="btn btn-danger" (click)="Delete()">Delete</button>
+        </div>
+
+    </div>
+</div>

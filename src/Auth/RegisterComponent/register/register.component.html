@@ -1,0 +1,48 @@
+<div>
+    <form (submit)="Register()" class="text-center card glass w-52 m-auto" [formGroup]="group">
+
+        <div class="m-3">
+            <label for="Name">Name</label>
+            <br>
+            <input type="text" formControlName="name">
+            @if (!group.get('name')?.valid && !group.get('name')?.untouched) {
+                <p>Ce champ est obligatoire</p>
+            }
+        </div>
+        
+        <div class="m-3">
+            <label for="Email">Email</label>
+            <br>
+            <input type="text" formControlName="email">
+            @if (!group.get('email')?.valid && !group.get('email')?.untouched) {
+                <p>Ce champ est obligatoire</p>
+            }
+        </div>
+        
+        <div class="m-3">
+            <label for="password">password</label>
+            <br>
+            <input type="text" formControlName="password">
+            @if (!group.get('password')?.valid && !group.get('password')?.untouched) {
+                @if (!group.get('password')?.errors) {
+
+                    <p>Ce champ est obligatoire</p>
+                }
+            }
+        </div>
+        
+        <div class="m-3">
+            <label for="Password Verification">Password Verification</label>
+            <br>
+            <input type="text" formControlName="passwordConfirm">
+            @if (!group.get('passwordConfirm')?.valid && !group.get('passwordConfirm')?.untouched) {
+
+                @if (!group.get('passwordConfirm')?.errors) {
+                    <p>Ce champ est obligatoire</p>
+                }
+            }
+        </div>
+
+        <button class="btn btn-primary m-3" type="submit">Send</button>
+    </form>
+</div>

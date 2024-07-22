@@ -1,0 +1,22 @@
+<div class="w-1/3 card bg-black/[.4] m-auto mt-8 mb-8 text-center">
+    <h1 class="m-8">Movies</h1>
+    <a class="btn btn-primary w-1/3 mt-2 mb-8  m-auto" routerLink="/movieAdd">Add Movie</a>
+</div>
+
+<div class="w-2/3 m-auto bg-white/[.8] p-4 text-center rounded">
+    <div *ngFor="let movie of moviesList">
+        
+        <div class="card m-auto w-2/3 mt-8 mb-8 m-auto bg-black/[.8] grid grid-cols-2">
+            <div class="m-auto">
+
+                <h4>{{movie.title}}</h4>
+                <p>{{movie.realisatorId}}</p>
+            </div>
+            <div class="m-auto">
+                <a class="btn btn-primary w-16" routerLink="/movieDetails/{{movie.id}}">Details</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,1 @@
+export const environmentUrl : string = 'http://tfcybersecu.somee.com'

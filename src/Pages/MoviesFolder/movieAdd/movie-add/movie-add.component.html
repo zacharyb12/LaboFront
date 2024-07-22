@@ -1,0 +1,70 @@
+<h1 class="m-auto w-auto text-center text-xl">Add new Movie</h1>
+
+<form (submit)="AddMovie($event)" class="text-center card glass w-52 m-auto" [formGroup]="group">
+    
+    <div class="m-3">
+        <label for="title">Title</label>
+        <br>
+        <input type="text" formControlName="title">
+        @if (!group.get('title')?.valid && !group.get('title')?.untouched) {
+            <p>Ce champ est obligatoire</p>
+        }
+    </div>
+
+    <div class="m-3">
+        <label for="description">Description</label>
+        <br>
+        <input type="text" formControlName="description">
+        @if (!group.get('description')?.valid && !group.get('description')?.untouched) {
+            <p>Ce champ est obligatoire</p>
+        }
+    </div>
+
+    <div class="m-3">
+
+        <label for="realisatorId">Realisator Id</label>
+        <select name="realisatorId" id="realisatorId" formControlName="realisatorId" >
+            <option *ngFor="let actor of actorList" [value]="actor.id">
+                {{actor.firstname}} {{actor.lastname}}
+            </option>
+        </select>
+
+        @if (!group.get('realisatorId')?.valid && !group.get('realisatorId')?.untouched) {
+            <p>Ce champ est obligatoire</p>
+        }
+    </div>
+
+    <div class="m-3">
+        <fieldset>
+            <div formArrayName="casting">
+                @for (control of getCasting().controls; let i = $index; track control) {
+
+                    <label for="actor">Actor</label>
+                    <br>
+                    <select name="casting" id="casting" [formControlName]="i" >
+                        <option *ngFor="let actor of actorList" [value]="actor.firstname + ' ' + actor.lastname">
+                            {{actor.firstname}} {{actor.lastname}}
+                        </option>
+                    </select>
+
+                    <!-- Ajout de la vérification des erreurs de validations -->
+                    @if (control?.errors) {
+                        @if (control.errors?.['required'] && control.touched) {
+                            <span class="p-error error-font">*This field is required</span>
+                        } @else if (control.errors?.['minlength']) {
+                            <span class="p-error error-font">*This field requires at least 3 characters</span>
+                        } @else if (control.errors?.['maxlength']) {
+                            <span class="p-error error-font">*This field accepts 20 characters maximum</span>
+                        }
+                        }
+                        <!-- Ajout d'un conditionnel d'affichage de bouton de suppression d'input si l'index != 0 -->
+                    @if (i !== 0) {
+                        <button (click)="removeCasting(i)" class="btn btn-primary m-3" >Remove this Actor</button>
+                    }
+                }
+            </div>
+        </fieldset>
+            <button (click)="addCasting()" class="btn btn-primary m-3" >Add more Actor</button>
+    </div>
+        <button type="submit" class="btn btn-primary m-3">Add</button>
+</form>
