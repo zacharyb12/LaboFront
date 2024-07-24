@@ -1,30 +1,19 @@
 <div class="navbar bg-base-100">
 
     <div class="flex-1">
-      <a class="btn btn-dark text-xl">MovieDB</a>
-    </div>
-
-    @if(isLogged() == true){
-      <div>
-        <h4>Bienvenue : {{email}}</h4>
-      </div>
-    }
-    
-    
-    
-    <div class="dropdown dropdown-hover">
-      <div tabindex="0" role="button" class="btn m-3 ">Menu</div>
-      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-auto p-2 shadow">
-        <li><a routerLink="">Home</a></li>
-        <li><a routerLink="movies">Movies</a></li>
-        <li><a routerLink="people">People</a></li>
-      </ul>
+      <div class="dropdown dropdown-hover">
+        <div tabindex="0" role="button" class="btn m-3 ">Menu</div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-auto p-2 shadow">
+          <li><a routerLink="">Home</a></li>
+          <li><a routerLink="movies">Movies</a></li>
+          <li><a routerLink="people">People</a></li>
+        </ul>
+      </div>      
     </div>
     
-    @if (isLogged() == false) {
+    
+    @if (this.isLogged() == "false") {
       <div>
-        
-        
         
           <button class="btn btn-primary m-3" routerLink="/register">Register</button>
           <button class="btn btn-primary m-3" onclick="my_modal_1.showModal()">Login</button>
@@ -44,9 +33,15 @@
       </div>
     }
 
-    @if(isLogged() == true){
+    @if(this.isLogged() == "true"){
       <div>
           <button class="btn btn-primary" (click)="logout()">Logout</button>
       </div>
+      <img src="https://img.icons8.com/?size=100&id=115640&format=png&color=000000" alt="logo you are logged">
     }
+
+    @if(this.isLogged() == "false"){
+      <img src="https://img.icons8.com/?size=100&id=91102&format=png&color=000000" alt="logo not logged">
+    }
+    
   </div>

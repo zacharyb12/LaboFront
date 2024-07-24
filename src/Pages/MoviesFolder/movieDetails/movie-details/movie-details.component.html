@@ -1,35 +1,46 @@
-<a class="btn btn-primary" routerLink="/">Retour</a>
+<a class="btn btn-primary" routerLink="/movies">Retour</a>
 
-<div class="m-auto w-2/3 grid grid-cols-2">
+<div class="m-auto grid grid-cols-2">
 
     <div class="card bg-dark m-auto shadow text-center text-white">
 
-        <div class="text-xl ">
-            <h1>{{movie?.title}}</h1>
+        <div class="grid grid-rows-2 w-auto">
+
+            <div class="w-2/3 text-xl m-auto text-center">
+                <h1>{{movie?.title}}</h1>
+            </div>
+            
+            <div class="card shadow bg-black/[.4] m-8 p-8 ">
+                <p class="card m-2 p-2 bg-white/[.6]">{{movie?.description}}</p>
+                @if(movie?.realisator){
+                    <p class="card m-2 p-2 bg-white/[.6]">{{movie?.realisator?.lastname}} {{movie?.realisator?.firstname}}</p>
+                }
+            </div>
         </div>
 
-        <div class="card shadow bg-black/[.4] m-8 p-8">
-            <p>{{movie?.description}}</p>
-            <p>{{movie?.realisatorId}}</p>
-        </div>
-        <div *ngFor="let person of movie?.casting" class="card shadow bg-white/[.6] m-5 w-48 grid grid-cols-2">
-           <div>
-            <h3> {{person.firstname}}</h3>
-            <h3> {{person.lastname}}</h3>
-            <h3> {{person.role}}</h3>
-           </div>
-
-           <div>
-               <img src="{{person.pictureURL}}" width="100" alt="">
-           </div>
-
+    <div class="grid grid-cols-2">
+        <div *ngFor="let person of movie?.casting" class="card shadow bg-white/[.6] w-auto grid grid-cols-2 m-4">
+                
+            <div>
+                <h3> {{person.firstname}}</h3>
+                <h3> {{person.lastname}}</h3>
+                <h3> {{person.role}}</h3>
+            </div>
+        
+            <div>
+                <img src="{{person.pictureURL}}" width="100" alt="">
+            </div>
             
         </div>
+    </div>
 
-        <div>
-            <a class="btn btn-primary" routerLink="/movieUpdate/{{movie?.id}}">Update</a>
-            <button class="btn btn-danger" (click)="Delete()">Delete</button>
-        </div>
+        @if(this.Role() == "admin"){
+
+            <div>
+                <a class="btn btn-primary" routerLink="/movieUpdate/{{movie?.id}}">Update</a>
+                <button class="btn btn-danger" (click)="Delete()">Delete</button>
+            </div>
+        }
 
     </div>
 </div>

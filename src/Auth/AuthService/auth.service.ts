@@ -13,13 +13,13 @@ export class AuthService {
   id : WritableSignal<number> = signal(-1);
   role : WritableSignal<string> = signal('');
   email : WritableSignal<string> = signal('');
-  token : WritableSignal<string> = signal('');
+  token : WritableSignal<string>= signal('');
 
 
-  isLogged: WritableSignal<boolean> = signal(this.isToken);
+  isLogged: WritableSignal<string> = signal(this.isToken);
 
-  get isToken() : boolean {
-    return localStorage.getItem("token") != undefined
+  get isToken() : string {
+    return localStorage.getItem("token") ? "true" : "false"
   }
 
   constructor(
@@ -34,7 +34,7 @@ export class AuthService {
     this.role = signal("");
     this.email = signal("");
     this.token = signal("");
-    this.isLogged.set(this.isToken);
+    this.isLogged.set("false");
    }
 
   getUserId(token : any) {
@@ -86,7 +86,11 @@ export class AuthService {
 
     this.httpClient.post('http://tfcybersecu.somee.com/api/Auth/register',registerForm).subscribe({
       next: (response) => {
-        this.router.navigate(['']);
+        let login : Login = {
+          email : registerForm.email,
+          password  : registerForm.password
+        }
+        this.Login(login)
         
       }
     })
@@ -96,7 +100,8 @@ export class AuthService {
     this.httpClient.post('http://tfcybersecu.somee.com/api/Auth/login', loginForm, { responseType: 'text' }).subscribe({
       next: (token) => {
         localStorage.setItem("token",token);
-        this.isLogged.set(this.isToken);
+        localStorage.setItem("isLogged","Ok");
+        this.isLogged.set("true");
         this.token.set(token);
 
         this.getUserId(token);

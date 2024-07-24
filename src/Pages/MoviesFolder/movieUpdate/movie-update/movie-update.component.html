@@ -1,6 +1,6 @@
 <h1 class="m-auto w-auto text-center text-xl">Update Movie</h1>
 
-<form *ngIf="group" (submit)="AddMovie($event)" class="text-center card glass w-52 m-auto" [formGroup]="group">
+<form *ngIf="group" (submit)="updateMovie($event)" class="text-center card glass w-52 m-auto" [formGroup]="group">
     
     <div class="m-3">
         <label for="title">Title</label>
@@ -22,9 +22,9 @@
 
     <div class="m-3">
 
-        <label for="realisatorId">Realisator</label>
-        <select name="realisatorId" id="realisatorId" formControlName="realisatorId" >
-            <option *ngFor="let actor of actorList" [value]="actor.id">
+        <label for="realisator">Realisator</label>
+        <select name="realisator" id="realisatorId" formControlName="realisatorId" >
+            <option *ngFor="let actor of actorList" [ngValue]="actor">
                 {{actor.firstname}} {{actor.lastname}}
             </option>
         </select>
@@ -36,36 +36,28 @@
 
 
     <div class="m-3">
-        <fieldset>
+       <fieldset>
             <div formArrayName="casting">
-                <label for="actor">Actor</label>
-                <br>
-                @for (control of getCasting().controls; let i = $index; track control) {
+                <div *ngFor="let control of getCasting().controls; let i = index" [formGroupName]="i">
+                  <label for="actor">Actor</label>
+                  <br>
+                  <select formControlName="actor">
+                    <option *ngFor="let actor of actorList" [ngValue]="actor">
+                      {{actor.firstname}} {{actor.lastname}}
+                    </option>
+                  </select>
+            
+                  <label for="role">Role</label>
+                  <input type="text" formControlName="role">
+            
 
-
-                    <select name="casting" id="casting" [formControlName]="i" >
-                        <option class="w-auto m-auto" (click)="AddActor(actor)" *ngFor="let actor of actorList" [value]="actor">
-                            {{actor.firstname}} {{actor.lastname}}
-                        </option>
-                        <br>
-                    </select>
-
-                    <!-- Ajout de la vérification des erreurs de validations -->
-                    @if (control?.errors) {
-                        @if (control.errors?.['required'] && control.touched) {
-                            <span class="p-error error-font">*This field is required</span>
-                        } @else if (control.errors?.['minlength']) {
-                            <span class="p-error error-font">*This field requires at least 3 characters</span>
-                        } @else if (control.errors?.['maxlength']) {
-                            <span class="p-error error-font">*This field accepts 20 characters maximum</span>
-                        }
-                        }
-                        <!-- Ajout d'un conditionnel d'affichage de bouton de suppression d'input si l'index != 0 -->
-                    @if (i !== 0) {
-                        <button (click)="removeCasting(i)" class="btn btn-primary m-3" >Remove this Actor</button>
-                    }
-                }
-            </div>
+                  <div *ngIf="control.errors && control.touched">
+                    <span *ngIf="control.errors['required']">*This field is required</span>
+                  </div>
+            
+                  <button *ngIf="i !== 0" type="button" (click)="removeCasting(i)" class="btn btn-primary m-3">Remove this Actor</button>
+                </div>
+              </div>
         </fieldset>
             <button (click)="addCasting()" class="btn btn-primary m-3" >Add more Actor</button>
     </div>

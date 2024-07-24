@@ -33,6 +33,7 @@ constructor(
 
 Add(){
 this.peopleService.Add(this.model);
+this.router.navigateByUrl("/people")
   
 }
 }

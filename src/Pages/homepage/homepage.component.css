@@ -1,7 +1,14 @@
-.reduce{
-    transform: scale(0.6);
-    border: 2px solid white;
-    border-radius: 12%;
-    box-shadow: 10 10 20 20;
-    padding: 4rem;
+@keyframes slide {
+    0%, 14.28% { transform: translateX(0%); }
+    28.57%, 42.85% { transform: translateX(-100%); }
+    57.14%, 71.42% { transform: translateX(-200%); }
+    85.71%, 100% { transform: translateX(-300%); }
 }
+.carousel-inner {
+    display: flex;
+    animation: slide 25s infinite;
+}
+.carousel-item {
+    min-width: 50%;
+    transition: transform 3s ease-in-out;
+  }

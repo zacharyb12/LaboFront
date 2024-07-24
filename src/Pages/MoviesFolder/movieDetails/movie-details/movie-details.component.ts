@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { MoviesService } from '../../../../Services/Movies/movies.service';
 import { Movie } from '../../../../Models/Movie/movie.model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgFor } from '@angular/common';
+import { PeopleService } from '../../../../Services/People/people.service';
+import { Person } from '../../../../Models/Person/person.model';
+import { AuthService } from '../../../../Auth/AuthService/auth.service';
 
 @Component({
   selector: 'app-movie-details',
@@ -14,21 +17,49 @@ import { NgFor } from '@angular/common';
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css'
 })
+
 export class MovieDetailsComponent {
 
+  actors? : Person[];
   movie? : Movie;
   id : number;
-  constructor(
-    private movieService : MoviesService,
-    private activRoute : ActivatedRoute
-  ){
-    this.id = this.activRoute.snapshot.params['id'];
-    this.movieService.GetDetails(this.id).subscribe({
-      next : (movie) => this.movie = movie
-    })
-  }
+  Role : WritableSignal<string>;
+
+
+
+constructor(
+
+  private movieService : MoviesService,
+  private peopleService : PeopleService,
+  private activRoute : ActivatedRoute,
+  private authService : AuthService
+
+){
+
+  this.id = this.activRoute.snapshot.params['id'];
+
+  this.movieService.GetDetails(this.id).subscribe({
+    next : (movie) =>{ this.movie = movie
+    console.log(movie)
+    }
+    
+  })
+
+  this.peopleService.Get().subscribe({
+    next: (response) => this.actors = response
+  })
+
+  this.Role = signal(this.authService.role());
+  console.log(this.movie?.realisator);
+  console.log(this.movie);
+  
+
+}
+
+
 
   Delete(){
     this.movieService.DeleteMovie(this.id);
   }
+
 }

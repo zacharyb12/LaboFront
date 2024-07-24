@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import {  FormBuilder, FormGroup, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component} from '@angular/core';
+import {  FormBuilder, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Login } from '../../../Models/LoginModel/login.model';
 import { AuthService } from '../../AuthService/auth.service';
 import { Router } from '@angular/router';
@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -40,7 +41,7 @@ export class LoginComponent {
       if (this.group.valid) {
       
         this.authService.Login(login);
-        this.router.navigate(['http://localhost:4200/'])
+        this.router.navigate([''])
       }
   }
   
