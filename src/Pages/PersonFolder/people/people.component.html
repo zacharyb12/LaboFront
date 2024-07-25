@@ -2,19 +2,18 @@
 
 <div class="w-auto m-auto mt-16 grid grid-cols-3 gap-10 card ">
 
-    <div class="m-auto bg-black/[.4] p-12 rounded">
+    <div class="card m-auto bg-black/[.4] p-12 rounded">
         <a class="btn btn-primary  m-auto" routerLink="/personAdd">Add</a>
     </div>
 
-    <div *ngFor="let person of people" class="" >
+    <div *ngFor="let person of people" class="card" >
         
-        <div class=" m-auto w-2/3 bg-black/[.4] rounded grid grid-cols-2">
+        <div class="card m-auto w-2/3 bg-black/[.4] grid grid-cols-2">
             <div class="card m-3">
-                <h4>{{person.id}}</h4>
                 <p>{{person.firstname}}</p>
                 <p>{{person.lastname}}</p>
-                <p>{{person.role}}</p>
-                <a class="btn btn-primary w-auto" routerLink="/personDetails/{{person.id}}">Details</a>
+
+                <a class="btn btn-primary w-16" routerLink="/personDetails/{{person.id}}">Details</a>
             </div>
             <div class="m-3">
                 <img src="{{person.pictureURL}}" alt="image de la personne" width="150">

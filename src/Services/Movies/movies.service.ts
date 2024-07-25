@@ -25,10 +25,8 @@ export class MoviesService {
   AddMovie(movieModel : CreateMovie){
     const token = localStorage.getItem("token");
     const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
-    return this.httpClient.post('http://tfcybersecu.somee.com/api/Movie',movieModel, {headers: headers}).subscribe({
-      next: (response) => console.log(response)
-      
-    })
+
+    return this.httpClient.post('http://tfcybersecu.somee.com/api/Movie',movieModel, {headers: headers});
   }
 
   DeleteMovie(id : number){
@@ -43,7 +41,7 @@ export class MoviesService {
   UpdateMovie(id : number,movie : CreateMovie ){    
     const token = this.authService.token()
     const headers = new HttpHeaders({'Authorization': `Bearer ${token}`});
-    return this.httpClient.put('http://tfcybersecu.somee.com/api/Movie/'+ id, movie, {headers: headers}).subscribe({
+    return this.httpClient.patch('http://tfcybersecu.somee.com/api/Movie/'+ id, movie, {headers: headers}).subscribe({
       next: (response) => console.log(response)
       
     })

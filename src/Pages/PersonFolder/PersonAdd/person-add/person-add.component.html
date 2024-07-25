@@ -1,31 +1,36 @@
 <a class="btn btn-primary m-auto ml-48 mt-8 mb-8 w-22" routerLink="/people">Retour a la liste</a>
-<div>
-    <div class="card bg-white/[.4] shadow w-2/3 m-auto mt-16 mb-8 grid grid-cols-2 gap-4 card">
 
-        <div class="text-center card shadow p-2 bg-white/[.2] m-auto w-2/3 h-auto p-8 text-white text-l">
+
+
+        <div class="text-center card shadow p-2 bg-white/[.2] m-auto w-2/3 h-auto p-8 text-white text-l grid grid-cols-2">
                 
-            <div>
+            <div class="card m-auto w-full bg-white/[.6] text-black">
                 <div>
                     <label for="lastname">Lastname</label>
+                    <br>
                     <input type="text" [(ngModel)]="model.lastname">
                 </div>
                 
                 <div>
                     <label for="firstname">Firstname</label>
+                    <br>
                     <input type="text" [(ngModel)]="model.firstname">
                 </div>
                 
-                <div>
+                <div class="pb-3">
                     <label for="pictureURL">Picture</label>
+                    <br>
                     <input type="text" id="pictureURL" [(ngModel)]="model.pictureURL">
                 </div>
             </div>
-                  
-            <div>
+            
+            <div class=" card bg-white/[.2] m-auto w-4/12 p-3">
+                <p class="card bg-white/[.2] m-2">{{model.lastname}}</p>
+                <p class="card bg-white/[.2] m-2">{{model.firstname}}</p>
+                <img [src]="model.pictureURL" width="300" class="m-auto border border-white" alt="Picture">
+            
 
-                <img [src]="model.pictureURL" width="300" class="m-auto mt-8 mb-8 border border-white" alt="Picture">
-
-                <button class="btn btn-primary" (click)="Add()">Add</button>
+                <button class="btn btn-primary m-4" (click)="Add()">Add</button>
             </div>
 
         </div>

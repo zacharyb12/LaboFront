@@ -34,14 +34,16 @@
     }
 
     @if(this.isLogged() == "true"){
-      <div>
+      <div class="mr-8">
           <button class="btn btn-primary" (click)="logout()">Logout</button>
       </div>
       <img src="https://img.icons8.com/?size=100&id=115640&format=png&color=000000" alt="logo you are logged">
     }
 
     @if(this.isLogged() == "false"){
-      <img src="https://img.icons8.com/?size=100&id=91102&format=png&color=000000" alt="logo not logged">
+      <div class="mr-8">
+        <img src="https://img.icons8.com/?size=100&id=91102&format=png&color=000000" alt="logo not logged">
+      </div>
     }
     
   </div>

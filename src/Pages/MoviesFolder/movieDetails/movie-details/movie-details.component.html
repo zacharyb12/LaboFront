@@ -1,44 +1,44 @@
 <a class="btn btn-primary" routerLink="/movies">Retour</a>
 
-<div class="m-auto grid grid-cols-2">
+<div class="m-auto w-full">
+    
+                <div class="w-50 ms-8 m-auto text-center">
+                    <h1 class="text-4xl">{{movie?.title}}</h1>
+                </div>
 
     <div class="card bg-dark m-auto shadow text-center text-white">
 
-        <div class="grid grid-rows-2 w-auto">
-
-            <div class="w-2/3 text-xl m-auto text-center">
-                <h1>{{movie?.title}}</h1>
-            </div>
+        <div class="m-auto w-7/12 ">
             
-            <div class="card shadow bg-black/[.4] m-8 p-8 ">
-                <p class="card m-2 p-2 bg-white/[.6]">{{movie?.description}}</p>
+            <div class="card shadow bg-white/[.6] m-8 p-8 ">
+                <p class="card m-2 p-2 bg-black/[.2]">{{movie?.description}}</p>
                 @if(movie?.realisator){
-                    <p class="card m-2 p-2 bg-white/[.6]">{{movie?.realisator?.lastname}} {{movie?.realisator?.firstname}}</p>
+                    <p class="card m-2 p-2 bg-black/[.2]">{{movie?.realisator?.firstname}} {{movie?.realisator?.lastname}}</p>
                 }
             </div>
         </div>
 
-    <div class="grid grid-cols-2">
-        <div *ngFor="let person of movie?.casting" class="card shadow bg-white/[.6] w-auto grid grid-cols-2 m-4">
+    <div class="w-full grid grid-cols-3">
+        <div *ngFor="let person of movie?.casting" class="card shadow bg-white/[.6] grid grid-cols-2 w-4/6 ml-5 mr-4 mb-4 p-4">
                 
-            <div>
+            <div class="card bg-black/[.2]  m-auto p-3">
                 <h3> {{person.firstname}}</h3>
                 <h3> {{person.lastname}}</h3>
                 <h3> {{person.role}}</h3>
             </div>
         
-            <div>
+            <div class="p-2 mr-auto ml-3">
                 <img src="{{person.pictureURL}}" width="100" alt="">
             </div>
             
         </div>
     </div>
 
-        @if(this.Role() == "admin"){
+        @if(this.Role() != ""){
 
-            <div>
-                <a class="btn btn-primary" routerLink="/movieUpdate/{{movie?.id}}">Update</a>
-                <button class="btn btn-danger" (click)="Delete()">Delete</button>
+            <div class="m-auto">
+                <a class="btn btn-primary m-auto" routerLink="/movieUpdate/{{movie?.id}}">Update</a>
+                <button class="btn btn-danger m-auto" (click)="Delete()">Delete</button>
             </div>
         }
 

@@ -39,8 +39,8 @@ constructor(
   this.id = this.activRoute.snapshot.params['id'];
 
   this.movieService.GetDetails(this.id).subscribe({
-    next : (movie) =>{ this.movie = movie
-    console.log(movie)
+    next : (movie) =>{ 
+      this.movie = movie
     }
     
   })
@@ -49,10 +49,7 @@ constructor(
     next: (response) => this.actors = response
   })
 
-  this.Role = signal(this.authService.role());
-  console.log(this.movie?.realisator);
-  console.log(this.movie);
-  
+  this.Role = authService.role;  
 
 }
 

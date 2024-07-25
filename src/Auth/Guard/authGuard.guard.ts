@@ -19,7 +19,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   } else {
     // Redirection de l'utilisateur vers un endroit ou il peut obtenir l'autorisation nécessaire pour accèder à la route.
     // Ou pas, certaines routes peuvent ne pas être accessible à l'utilisateur selon ses credentials
-    router.navigate([''])
+    router.navigate(['/'])
     return false;
   }
 
